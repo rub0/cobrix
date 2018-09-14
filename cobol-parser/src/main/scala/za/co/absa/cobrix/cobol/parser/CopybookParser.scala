@@ -128,6 +128,7 @@ object CopybookParser {
       val trees = fields
         .drop(1) // root already added so drop first line
         .foldLeft[Statement](root)((element, field) => {
+        println(field.modifiers)
         val keywords = field.modifiers.keys.toList
         val isLeaf = keywords.contains(PIC)
         val redefines = field.modifiers.get(REDEFINES)
@@ -651,6 +652,6 @@ object CopybookParser {
     val separator = if (str.contains('V')) 'V' else '.'
     val parts = str.split(separator)
     val nines1 = parts.head.count(_ == '9')
-    val nines2 = if (parts.length > 1) parts.last.count(_ == '9') else 0
+    val nines2 = s.count(_ == 'V')
     (nines1, nines2)  }
 }
